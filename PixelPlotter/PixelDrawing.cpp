@@ -56,7 +56,7 @@ namespace PixelPlotter {
 		float Y = Y1 + 0.5;
 
 		while (MaxDist >= 0) {
-			SetViewportPixel(X, Y, PixelColour);
+			SetViewportPixel(round(X), round(Y), PixelColour);
 			X += XStep;
 			Y += YStep;
 			MaxDist--;

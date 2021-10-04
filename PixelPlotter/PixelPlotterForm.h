@@ -575,10 +575,7 @@ namespace PixelPlotter {
 					}
 					else if (tbbFreehand->Pushed)
 					{
-						SetViewportPixel( iCellMoveX, iCellMoveY, colourDraw );
-// Replace the above line with the line below for a better freehand tool once the DrawLine
-// function is working
-//						DrawLine( m_iCellDownX, m_iCellDownY, iCellMoveX, iCellMoveY, colourDraw );
+						DrawLine( m_iCellDownX, m_iCellDownY, iCellMoveX, iCellMoveY, colourDraw );
 						m_iWindowDownX = e->X;
 						m_iWindowDownY = e->Y;
 						m_iCellDownX = iCellMoveX;
