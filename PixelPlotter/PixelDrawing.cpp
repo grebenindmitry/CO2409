@@ -86,7 +86,14 @@ void PixelPlotterForm::DrawPolygon( int Sides, int X, int Y, int R, Color PixelC
 // and it the points are on a circle of radius R. The number of points will always be odd.
 void PixelPlotterForm::DrawStar( int Sides, int X, int Y, int R, Color PixelColour )
 {
-	// Fill in the correct code here
+	for (int side = 1; side <= Sides; side++) {
+		float X1 = R * sin(2 * PI / Sides * side + PI) + 0.5;
+		float Y1 = R * cos(2 * PI / Sides * side + PI) + 0.5;
+		float X2 = R * sin(2 * PI / Sides * (side + 2) + PI) + 0.5;
+		float Y2 = R * cos(2 * PI / Sides * (side + 2) + PI) + 0.5;
+
+		DrawLine(X1 + X, Y1 + Y, X2 + X, Y2 + Y, PixelColour);
+	}
 }
 
 
