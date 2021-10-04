@@ -8,6 +8,7 @@
 #include "PixelPlotterForm.h"  // Class header file
 #include <math.h>              // Need standard math functions for drawing circles
 #include <algorithm>
+#include <iostream>
 
 // All application definitions are contained in a 'namespace'. Namespaces primarily protect against
 // variable name clashes when using many libraries together, they also promote good encapsulation
@@ -70,12 +71,13 @@ void PixelPlotterForm::DrawLine( int X1, int Y1, int X2, int Y2, Color PixelColo
 // (X, Y) and the points are on a circle of radius R
 void PixelPlotterForm::DrawPolygon( int Sides, int X, int Y, int R, Color PixelColour )
 {
-	if (Sides % 2) {
-		
-	}
+	for (int side = 1; side <= Sides; side++) {
+		float X1 = R * sin(2 * PI / Sides * side + PI) + 0.5;
+		float Y1 = R * cos(2 * PI / Sides * side + PI) + 0.5;
+		float X2 = R * sin(2 * PI / Sides * (side + 1) + PI) + 0.5;
+		float Y2 = R * cos(2 * PI / Sides * (side + 1) + PI) + 0.5;
 
-	for (int y = Y - R; y < Y + R; y++) {
-
+		DrawLine(X1 + X, Y1 + Y, X2 + X, Y2 + Y, PixelColour);
 	}
 }
 

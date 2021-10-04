@@ -12,7 +12,7 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectName>PixelPlotter</ProjectName>
-    <ProjectGuid>{9FB5CCAB-F227-45FA-BB94-54F9DC60C07C}</ProjectGuid>
+    <ProjectGuid>{D648DD37-09B7-4D3E-BC70-DD76BFB6A2C9}</ProjectGuid>
     <RootNamespace>PixelPlotter</RootNamespace>
     <Keyword>ManagedCProj</Keyword>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
