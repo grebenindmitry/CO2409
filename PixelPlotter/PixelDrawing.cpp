@@ -94,8 +94,8 @@ namespace PixelPlotter {
 
 	// Draw a circle with centre (X, Y) and radiuses RX (horizontal) and RY (vertical)
 	void PixelPlotterForm::DrawCircle(int X, int Y, int R, Color PixelColour) {
-		int x = 0, y = R;
-		int P = 1 - R;
+		float x = 0, y = R;
+		float P = 1 - R;
 
 		SetViewportPixel(x + X, y + Y, PixelColour);
 
