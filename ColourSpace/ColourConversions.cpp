@@ -97,7 +97,7 @@ void HSLToRGB( int H, int S, int L, int& R, int& G, int& B )
 		}
 	}
 
-	R = rgb[0] * 255;
-	G = rgb[1] * 255;
-	B = rgb[2] * 255;
+	R = round(rgb[0] * 255);
+	G = round(rgb[1] * 255);
+	B = round(rgb[2] * 255);
 }
