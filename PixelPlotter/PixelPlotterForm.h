@@ -22,19 +22,17 @@ namespace PixelPlotter {
 	///          the designers will not be able to interact properly with localized
 	///          resources associated with this form.
 	/// </summary>
-	public ref class PixelPlotterForm : public System::Windows::Forms::Form
-	{
+	public ref class PixelPlotterForm : public System::Windows::Forms::Form {
 	public:
-		PixelPlotterForm(void)
-		{
+		PixelPlotterForm(void) {
 			InitializeComponent();
 
 			// Initialise an offscreen Bitmap to store the contents cell window, then initialise
 			// a Graphics object for drawing to this bitmap
-			m_bmpCellWindow = gcnew Bitmap( pbxCellWindow->ClientSize.Width,
-			                                pbxCellWindow->ClientSize.Height,
-			                                PixelFormat::Format32bppArgb );
-			m_gfxCellWindow = Graphics::FromImage( m_bmpCellWindow );
+			m_bmpCellWindow = gcnew Bitmap(pbxCellWindow->ClientSize.Width,
+				pbxCellWindow->ClientSize.Height,
+				PixelFormat::Format32bppArgb);
+			m_gfxCellWindow = Graphics::FromImage(m_bmpCellWindow);
 			pbxCellWindow->Image = m_bmpCellWindow;
 
 			// Create another Graphics object for drawing directly to the client area of the cell
@@ -55,67 +53,59 @@ namespace PixelPlotter {
 			UpdateCellWindow();
 
 			// Set initial number of sides
-			m_iSides = Convert::ToInt32( tbxSides->Text );
+			m_iSides = Convert::ToInt32(tbxSides->Text);
 			tbbStar->Enabled = ((m_iSides & 1) && m_iSides > 3);
-			if (!tbbStar->Enabled && tbbStar->Pushed)
-			{
-			tbbPolygon->Pushed = true;
-			tbbStar->Pushed = false;
+			if (!tbbStar->Enabled && tbbStar->Pushed) {
+				tbbPolygon->Pushed = true;
+				tbbStar->Pushed = false;
 			}
-
-			bool bShowTools = (tbbPolygon->Pushed || tbbStar->Pushed);
-			gbxToolSettings->Visible = bShowTools;
-			lblSides->Visible = bShowTools;
-			tbxSides->Visible = bShowTools;
 		}
 
 	protected:
 		/// <summary>
 		/// Clean up any resources being used.
 		/// </summary>
-		~PixelPlotterForm()
-		{
+		~PixelPlotterForm() {
 			// Release resources created in the constructor
 			delete m_gfxCellWindowTransient;
 			delete m_gfxCellWindow;
 
-			if (components)
-			{
+			if (components) {
 				delete components;
 			}
 		}
 
-	private: System::Windows::Forms::Button^  btnClear;
-	private: System::Windows::Forms::StatusBar^  sbMain;
-	private: System::Windows::Forms::StatusBarPanel^  statusBarPanel1;
-	private: System::Windows::Forms::StatusBarPanel^  sbpXPos;
-	private: System::Windows::Forms::StatusBarPanel^  statusBarPanel2;
-	private: System::Windows::Forms::StatusBarPanel^  sbpYPos;
-	private: System::Windows::Forms::StatusBarPanel^  statusBarPanel3;
-	private: System::Windows::Forms::Label^  label1;
-	private: System::Windows::Forms::TrackBar^  trkPixelSize;
-	private: System::Windows::Forms::GroupBox^  groupBox1;
-	private: System::Windows::Forms::CheckBox^  cbxGrid;
-	private: System::Windows::Forms::GroupBox^  groupBox2;
-	private: System::Windows::Forms::PictureBox^  pbxFGColour;
-	private: System::Windows::Forms::PictureBox^  pbxBGColour;
-	private: System::Windows::Forms::Label^  label3;
-	private: System::Windows::Forms::Label^  label2;
-	private: System::Windows::Forms::TextBox^  tbxSides;
-	private: System::Windows::Forms::PictureBox^  pbxCellWindow;
-	private: System::Windows::Forms::ImageList^  ilToolBar;
-	private: System::Windows::Forms::GroupBox^  gbxToolSettings;
-	private: System::Windows::Forms::Label^  lblSides;
-	private: System::Windows::Forms::ToolBarButton^  tbbCircle;
-	private: System::Windows::Forms::ToolBar^  tbMain;
-	private: System::Windows::Forms::ToolBarButton^  tbbDrag;
-	private: System::Windows::Forms::ToolBarButton^  tbbPoint;
-	private: System::Windows::Forms::ToolBarButton^  tbbFreehand;
-	private: System::Windows::Forms::ToolBarButton^  tbbLine;
-	private: System::Windows::Forms::ToolBarButton^  tbbRectangle;
-	private: System::Windows::Forms::ToolBarButton^  tbbPolygon;
-	private: System::Windows::Forms::ToolBarButton^  tbbStar;
-	private: System::ComponentModel::IContainer^  components;
+	private: System::Windows::Forms::Button^ btnClear;
+	private: System::Windows::Forms::StatusBar^ sbMain;
+	private: System::Windows::Forms::StatusBarPanel^ statusBarPanel1;
+	private: System::Windows::Forms::StatusBarPanel^ sbpXPos;
+	private: System::Windows::Forms::StatusBarPanel^ statusBarPanel2;
+	private: System::Windows::Forms::StatusBarPanel^ sbpYPos;
+	private: System::Windows::Forms::StatusBarPanel^ statusBarPanel3;
+	private: System::Windows::Forms::Label^ label1;
+	private: System::Windows::Forms::TrackBar^ trkPixelSize;
+	private: System::Windows::Forms::GroupBox^ groupBox1;
+	private: System::Windows::Forms::CheckBox^ cbxGrid;
+	private: System::Windows::Forms::GroupBox^ groupBox2;
+	private: System::Windows::Forms::PictureBox^ pbxFGColour;
+	private: System::Windows::Forms::PictureBox^ pbxBGColour;
+	private: System::Windows::Forms::Label^ label3;
+	private: System::Windows::Forms::Label^ label2;
+	private: System::Windows::Forms::NumericUpDown^ tbxSides;
+	private: System::Windows::Forms::PictureBox^ pbxCellWindow;
+	private: System::Windows::Forms::ImageList^ ilToolBar;
+	private: System::Windows::Forms::GroupBox^ gbxToolSettings;
+	private: System::Windows::Forms::Label^ lblSides;
+	private: System::Windows::Forms::ToolBarButton^ tbbCircle;
+	private: System::Windows::Forms::ToolBar^ tbMain;
+	private: System::Windows::Forms::ToolBarButton^ tbbDrag;
+	private: System::Windows::Forms::ToolBarButton^ tbbPoint;
+	private: System::Windows::Forms::ToolBarButton^ tbbFreehand;
+	private: System::Windows::Forms::ToolBarButton^ tbbLine;
+	private: System::Windows::Forms::ToolBarButton^ tbbRectangle;
+	private: System::Windows::Forms::ToolBarButton^ tbbPolygon;
+	private: System::Windows::Forms::ToolBarButton^ tbbStar;
+	private: System::ComponentModel::IContainer^ components;
 
 	private:
 		/// <summary>
@@ -128,10 +118,9 @@ namespace PixelPlotter {
 		/// Required method for Designer support - do not modify
 		/// the contents of this method with the code editor.
 		/// </summary>
-		void InitializeComponent(void)
-		{
+		void InitializeComponent(void) {
 			this->components = (gcnew System::ComponentModel::Container());
-			System::ComponentModel::ComponentResourceManager^  resources = (gcnew System::ComponentModel::ComponentResourceManager(PixelPlotterForm::typeid));
+			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(PixelPlotterForm::typeid));
 			this->btnClear = (gcnew System::Windows::Forms::Button());
 			this->sbMain = (gcnew System::Windows::Forms::StatusBar());
 			this->statusBarPanel1 = (gcnew System::Windows::Forms::StatusBarPanel());
@@ -148,7 +137,7 @@ namespace PixelPlotter {
 			this->pbxBGColour = (gcnew System::Windows::Forms::PictureBox());
 			this->label3 = (gcnew System::Windows::Forms::Label());
 			this->label2 = (gcnew System::Windows::Forms::Label());
-			this->tbxSides = (gcnew System::Windows::Forms::TextBox());
+			this->tbxSides = (gcnew System::Windows::Forms::NumericUpDown());
 			this->pbxCellWindow = (gcnew System::Windows::Forms::PictureBox());
 			this->ilToolBar = (gcnew System::Windows::Forms::ImageList(this->components));
 			this->gbxToolSettings = (gcnew System::Windows::Forms::GroupBox());
@@ -162,17 +151,17 @@ namespace PixelPlotter {
 			this->tbbRectangle = (gcnew System::Windows::Forms::ToolBarButton());
 			this->tbbPolygon = (gcnew System::Windows::Forms::ToolBarButton());
 			this->tbbStar = (gcnew System::Windows::Forms::ToolBarButton());
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->statusBarPanel1))->BeginInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->sbpXPos))->BeginInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->statusBarPanel2))->BeginInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->sbpYPos))->BeginInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->statusBarPanel3))->BeginInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->trkPixelSize))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->statusBarPanel1))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->sbpXPos))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->statusBarPanel2))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->sbpYPos))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->statusBarPanel3))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->trkPixelSize))->BeginInit();
 			this->groupBox1->SuspendLayout();
 			this->groupBox2->SuspendLayout();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pbxFGColour))->BeginInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pbxBGColour))->BeginInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pbxCellWindow))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pbxFGColour))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pbxBGColour))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pbxCellWindow))->BeginInit();
 			this->gbxToolSettings->SuspendLayout();
 			this->SuspendLayout();
 			// 
@@ -189,8 +178,10 @@ namespace PixelPlotter {
 			// 
 			this->sbMain->Location = System::Drawing::Point(0, 522);
 			this->sbMain->Name = L"sbMain";
-			this->sbMain->Panels->AddRange(gcnew cli::array< System::Windows::Forms::StatusBarPanel^  >(5) {this->statusBarPanel1, this->sbpXPos, 
-				this->statusBarPanel2, this->sbpYPos, this->statusBarPanel3});
+			this->sbMain->Panels->AddRange(gcnew cli::array< System::Windows::Forms::StatusBarPanel^  >(5) {
+				this->statusBarPanel1, this->sbpXPos,
+					this->statusBarPanel2, this->sbpYPos, this->statusBarPanel3
+			});
 			this->sbMain->ShowPanels = true;
 			this->sbMain->Size = System::Drawing::Size(614, 22);
 			this->sbMain->SizingGrip = false;
@@ -336,7 +327,9 @@ namespace PixelPlotter {
 			this->tbxSides->Name = L"tbxSides";
 			this->tbxSides->Size = System::Drawing::Size(32, 20);
 			this->tbxSides->TabIndex = 1;
-			this->tbxSides->Text = L"5";
+			this->tbxSides->Value = 3;
+			this->tbxSides->Minimum = 3;
+			this->tbxSides->DecimalPlaces = 0;
 			this->tbxSides->TextChanged += gcnew System::EventHandler(this, &PixelPlotterForm::tbxSides_TextChanged);
 			// 
 			// pbxCellWindow
@@ -354,7 +347,7 @@ namespace PixelPlotter {
 			// 
 			// ilToolBar
 			// 
-			this->ilToolBar->ImageStream = (cli::safe_cast<System::Windows::Forms::ImageListStreamer^  >(resources->GetObject(L"ilToolBar.ImageStream")));
+			this->ilToolBar->ImageStream = (cli::safe_cast<System::Windows::Forms::ImageListStreamer^>(resources->GetObject(L"ilToolBar.ImageStream")));
 			this->ilToolBar->TransparentColor = System::Drawing::Color::White;
 			this->ilToolBar->Images->SetKeyName(0, L"");
 			this->ilToolBar->Images->SetKeyName(1, L"");
@@ -394,8 +387,10 @@ namespace PixelPlotter {
 			// tbMain
 			// 
 			this->tbMain->BorderStyle = System::Windows::Forms::BorderStyle::Fixed3D;
-			this->tbMain->Buttons->AddRange(gcnew cli::array< System::Windows::Forms::ToolBarButton^  >(8) {this->tbbDrag, this->tbbPoint, 
-				this->tbbFreehand, this->tbbLine, this->tbbRectangle, this->tbbPolygon, this->tbbStar, this->tbbCircle});
+			this->tbMain->Buttons->AddRange(gcnew cli::array< System::Windows::Forms::ToolBarButton^  >(8) {
+				this->tbbDrag, this->tbbPoint,
+					this->tbbFreehand, this->tbbLine, this->tbbRectangle, this->tbbPolygon, this->tbbStar, this->tbbCircle
+			});
 			this->tbMain->DropDownArrows = true;
 			this->tbMain->ImageList = this->ilToolBar;
 			this->tbMain->Location = System::Drawing::Point(0, 0);
@@ -467,21 +462,21 @@ namespace PixelPlotter {
 			this->Controls->Add(this->gbxToolSettings);
 			this->Controls->Add(this->tbMain);
 			this->Cursor = System::Windows::Forms::Cursors::Arrow;
-			this->Icon = (cli::safe_cast<System::Drawing::Icon^  >(resources->GetObject(L"$this.Icon")));
+			this->Icon = (cli::safe_cast<System::Drawing::Icon^>(resources->GetObject(L"$this.Icon")));
 			this->MaximizeBox = false;
 			this->Name = L"PixelPlotterForm";
 			this->Text = L"Pixel Plotter";
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->statusBarPanel1))->EndInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->sbpXPos))->EndInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->statusBarPanel2))->EndInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->sbpYPos))->EndInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->statusBarPanel3))->EndInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->trkPixelSize))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->statusBarPanel1))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->sbpXPos))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->statusBarPanel2))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->sbpYPos))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->statusBarPanel3))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->trkPixelSize))->EndInit();
 			this->groupBox1->ResumeLayout(false);
 			this->groupBox2->ResumeLayout(false);
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pbxFGColour))->EndInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pbxBGColour))->EndInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pbxCellWindow))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pbxFGColour))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pbxBGColour))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pbxCellWindow))->EndInit();
 			this->gbxToolSettings->ResumeLayout(false);
 			this->gbxToolSettings->PerformLayout();
 			this->ResumeLayout(false);
@@ -491,174 +486,152 @@ namespace PixelPlotter {
 #pragma endregion
 
 
-	///////////////////////////////////////////
-	// Form events
+		///////////////////////////////////////////
+		// Form events
 	private:
 
-		System::Void pbxCellWindow_MouseDown( System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e )
-		{
+		System::Void pbxCellWindow_MouseDown(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e) {
 			m_iWindowDownX = e->X;
 			m_iWindowDownY = e->Y;
-			m_iCellDownX = CellXFromWindowX( e->X );
-			m_iCellDownY = CellYFromWindowY( e->Y );
-			
+			m_iCellDownX = CellXFromWindowX(e->X);
+			m_iCellDownY = CellYFromWindowY(e->Y);
+
 			// Drawing actions are based on mouse button use
-			switch (e->Button)
+			switch (e->Button) {
+			case ::MouseButtons::Left:
+			case ::MouseButtons::Right:
 			{
-				case ::MouseButtons::Left:
-				case ::MouseButtons::Right:
-				{	
-					// Get drawing colour
-					Color colourDraw;
-					if (e->Button == ::MouseButtons::Left)
-					{
-						colourDraw = FGColour();
-					}
-					else
-					{
-						colourDraw = BGColour();
-					}
-					
-					// Interpret initial mouse click based on which tool is in use
-					if (tbbPoint->Pushed || tbbFreehand->Pushed)
-					{
-						SetViewportPixel( m_iCellDownX, m_iCellDownY, colourDraw );
-					}
-					break;
+				// Get drawing colour
+				Color colourDraw;
+				if (e->Button == ::MouseButtons::Left) {
+					colourDraw = FGColour();
 				}
+				else {
+					colourDraw = BGColour();
+				}
+
+				// Interpret initial mouse click based on which tool is in use
+				if (tbbPoint->Pushed || tbbFreehand->Pushed) {
+					SetViewportPixel(m_iCellDownX, m_iCellDownY, colourDraw);
+				}
+				break;
+			}
 			}
 		}
 
-		System::Void pbxCellWindow_MouseMove( System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e )
-		{
-			int iCellMoveX = CellXFromWindowX( e->X );
-			int iCellMoveY = CellYFromWindowY( e->Y );
-			
+		System::Void pbxCellWindow_MouseMove(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e) {
+			int iCellMoveX = CellXFromWindowX(e->X);
+			int iCellMoveY = CellYFromWindowY(e->Y);
+
 			// Update status bar text
-			sbpXPos->Text = Convert::ToString( iCellMoveX );
-			sbpYPos->Text = Convert::ToString( iCellMoveY );
-			
+			sbpXPos->Text = Convert::ToString(iCellMoveX);
+			sbpYPos->Text = Convert::ToString(iCellMoveY);
+
 			// Drawing actions are based on mouse button use
-			switch (e->Button)
+			switch (e->Button) {
+			case ::MouseButtons::Left:
+			case ::MouseButtons::Right:
 			{
-				case ::MouseButtons::Left:
-				case ::MouseButtons::Right:
-				{
-					// Get drawing colour
-					Color colourDraw;
-					if (e->Button == ::MouseButtons::Left)
-					{
-						colourDraw = FGColour();
-					}
-					else
-					{
-						colourDraw = BGColour();
-					}
-					
-					// Interpret mouse movement based on which tool is in use
-					if (tbbDrag->Pushed)
-					{
-						
-						// Update cell window offset based on latest mouse movement
-						m_fCellWindowOffsetX -= static_cast<float>(e->X - m_iWindowDownX) / CellWidth();
-						m_fCellWindowOffsetY -= static_cast<float>(e->Y - m_iWindowDownY) / CellHeight();
-						CheckCellWindowBounds();
-						
-						// Redraw entire cell window
-						UpdateCellWindow();
-						
-						// Reset mouse down event to latest position
-						m_iWindowDownX = e->X;
-						m_iWindowDownY = e->Y;
-						m_iCellDownX = iCellMoveX;
-						m_iCellDownY = iCellMoveY;
-					}
-					else if (tbbFreehand->Pushed)
-					{
-						DrawLine( m_iCellDownX, m_iCellDownY, iCellMoveX, iCellMoveY, colourDraw );
-						m_iWindowDownX = e->X;
-						m_iWindowDownY = e->Y;
-						m_iCellDownX = iCellMoveX;
-						m_iCellDownY = iCellMoveY;
-					}
-					else if (tbbLine->Pushed || tbbRectangle->Pushed || tbbPolygon->Pushed || 
-					         tbbStar->Pushed || tbbCircle->Pushed)
-					{
-						DrawGuideLines( e->X, e->Y );
-					}
-					break;
+				// Get drawing colour
+				Color colourDraw;
+				if (e->Button == ::MouseButtons::Left) {
+					colourDraw = FGColour();
 				}
+				else {
+					colourDraw = BGColour();
+				}
+
+				// Interpret mouse movement based on which tool is in use
+				if (tbbDrag->Pushed) {
+
+					// Update cell window offset based on latest mouse movement
+					m_fCellWindowOffsetX -= static_cast<float>(e->X - m_iWindowDownX) / CellWidth();
+					m_fCellWindowOffsetY -= static_cast<float>(e->Y - m_iWindowDownY) / CellHeight();
+					CheckCellWindowBounds();
+
+					// Redraw entire cell window
+					UpdateCellWindow();
+
+					// Reset mouse down event to latest position
+					m_iWindowDownX = e->X;
+					m_iWindowDownY = e->Y;
+					m_iCellDownX = iCellMoveX;
+					m_iCellDownY = iCellMoveY;
+				}
+				else if (tbbFreehand->Pushed) {
+					DrawLine(m_iCellDownX, m_iCellDownY, iCellMoveX, iCellMoveY, colourDraw);
+					m_iWindowDownX = e->X;
+					m_iWindowDownY = e->Y;
+					m_iCellDownX = iCellMoveX;
+					m_iCellDownY = iCellMoveY;
+				}
+				else if (tbbLine->Pushed || tbbRectangle->Pushed || tbbPolygon->Pushed ||
+					tbbStar->Pushed || tbbCircle->Pushed) {
+					DrawGuideLines(e->X, e->Y);
+				}
+				break;
+			}
 			}
 		}
 
-		System::Void pbxCellWindow_MouseUp( System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e )
-		{
-			int iCellUpX = CellXFromWindowX( e->X );
-			int iCellUpY = CellYFromWindowY( e->Y );
-			
+		System::Void pbxCellWindow_MouseUp(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e) {
+			int iCellUpX = CellXFromWindowX(e->X);
+			int iCellUpY = CellYFromWindowY(e->Y);
+
 			// Drawing actions are based on mouse button use
-			switch (e->Button)
+			switch (e->Button) {
+			case ::MouseButtons::Left:
+			case ::MouseButtons::Right:
 			{
-				case ::MouseButtons::Left:
-				case ::MouseButtons::Right:
-				{	
-					// Get drawing colour
-					Color colourDraw;
-					if (e->Button == ::MouseButtons::Left)
-					{
-						colourDraw = FGColour();
-					}
-					else
-					{
-						colourDraw = BGColour();
-					}
-					
-					// Interpret mouse release based on which tool is in use
-					if (tbbLine->Pushed)
-					{
-						RemoveGuideLines();
-						DrawLine( m_iCellDownX, m_iCellDownY, iCellUpX, iCellUpY, colourDraw );
-					}
-					else if (tbbRectangle->Pushed)
-					{
-						RemoveGuideLines();
-						int iLeftX = Math::Min( m_iCellDownX, iCellUpX );
-						int iRightX = Math::Max( m_iCellDownX, iCellUpX );
-						int iTopY = Math::Min( m_iCellDownY, iCellUpY );
-						int iBottomY = Math::Max( m_iCellDownY, iCellUpY );
-						DrawRectangle( iLeftX, iTopY, iRightX - iLeftX + 1, iBottomY - iTopY + 1, colourDraw );
-					}
-					else if (tbbPolygon->Pushed)
-					{
-						RemoveGuideLines();
-						int iMoveX = iCellUpX - m_iCellDownX;
-						int iMoveY = iCellUpY - m_iCellDownY;
-						int iRadius = static_cast<int>(Math::Sqrt( iMoveX * iMoveX + iMoveY * iMoveY ) + 0.5f);
-						DrawPolygon( m_iSides, m_iCellDownX, m_iCellDownY, iRadius, colourDraw );
-					}
-					else if (tbbStar->Pushed)
-					{
-						RemoveGuideLines();
-						int iMoveX = iCellUpX - m_iCellDownX;
-						int iMoveY = iCellUpY - m_iCellDownY;
-						int iRadius = static_cast<int>(Math::Sqrt( iMoveX * iMoveX + iMoveY * iMoveY ) + 0.5f);
-						DrawStar( m_iSides, m_iCellDownX, m_iCellDownY, iRadius, colourDraw );
-					}
-					else if (tbbCircle->Pushed)
-					{
-						RemoveGuideLines();
-						int iMoveX = iCellUpX - m_iCellDownX;
-						int iMoveY = iCellUpY - m_iCellDownY;
-						int iRadius = static_cast<int>(Math::Sqrt( iMoveX * iMoveX + iMoveY * iMoveY ) + 0.5f);
-						DrawCircle( m_iCellDownX, m_iCellDownY, iRadius, colourDraw );
-					}
-					break;
+				// Get drawing colour
+				Color colourDraw;
+				if (e->Button == ::MouseButtons::Left) {
+					colourDraw = FGColour();
 				}
+				else {
+					colourDraw = BGColour();
+				}
+
+				// Interpret mouse release based on which tool is in use
+				if (tbbLine->Pushed) {
+					RemoveGuideLines();
+					DrawLine(m_iCellDownX, m_iCellDownY, iCellUpX, iCellUpY, colourDraw);
+				}
+				else if (tbbRectangle->Pushed) {
+					RemoveGuideLines();
+					int iLeftX = Math::Min(m_iCellDownX, iCellUpX);
+					int iRightX = Math::Max(m_iCellDownX, iCellUpX);
+					int iTopY = Math::Min(m_iCellDownY, iCellUpY);
+					int iBottomY = Math::Max(m_iCellDownY, iCellUpY);
+					DrawRectangle(iLeftX, iTopY, iRightX - iLeftX + 1, iBottomY - iTopY + 1, colourDraw);
+				}
+				else if (tbbPolygon->Pushed) {
+					RemoveGuideLines();
+					int iMoveX = iCellUpX - m_iCellDownX;
+					int iMoveY = iCellUpY - m_iCellDownY;
+					int iRadius = static_cast<int>(Math::Sqrt(iMoveX * iMoveX + iMoveY * iMoveY) + 0.5f);
+					DrawPolygon(m_iSides, m_iCellDownX, m_iCellDownY, iRadius, colourDraw);
+				}
+				else if (tbbStar->Pushed) {
+					RemoveGuideLines();
+					int iMoveX = iCellUpX - m_iCellDownX;
+					int iMoveY = iCellUpY - m_iCellDownY;
+					int iRadius = static_cast<int>(Math::Sqrt(iMoveX * iMoveX + iMoveY * iMoveY) + 0.5f);
+					DrawStar(m_iSides, m_iCellDownX, m_iCellDownY, iRadius, colourDraw);
+				}
+				else if (tbbCircle->Pushed) {
+					RemoveGuideLines();
+					int iMoveX = iCellUpX - m_iCellDownX;
+					int iMoveY = iCellUpY - m_iCellDownY;
+					int iRadius = static_cast<int>(Math::Sqrt(iMoveX * iMoveX + iMoveY * iMoveY) + 0.5f);
+					DrawCircle(m_iCellDownX, m_iCellDownY, iRadius, colourDraw);
+				}
+				break;
+			}
 			}
 		}
 
-		System::Void tbMain_ButtonClick( System::Object^ sender, System::Windows::Forms::ToolBarButtonClickEventArgs^ e )
-		{
+		System::Void tbMain_ButtonClick(System::Object^ sender, System::Windows::Forms::ToolBarButtonClickEventArgs^ e) {
 			tbbDrag->Pushed = false;
 			tbbPoint->Pushed = false;
 			tbbFreehand->Pushed = false;
@@ -668,146 +641,109 @@ namespace PixelPlotter {
 			tbbStar->Pushed = false;
 			tbbCircle->Pushed = false;
 			e->Button->Pushed = true;
-			if (e->Button == tbbDrag)
-			{
+			if (e->Button == tbbDrag) {
 				pbxCellWindow->Cursor = Cursors::Hand;
 			}
-			else
-			{
+			else {
 				pbxCellWindow->Cursor = Cursors::Cross;
 			}
-
-			bool bShowTools = (tbbPolygon->Pushed || tbbStar->Pushed);
-			gbxToolSettings->Visible = bShowTools;
-			lblSides->Visible = bShowTools;
-			tbxSides->Visible = bShowTools;
 		}
 
-		System::Void btnClear_Click( System::Object^ sender, System::EventArgs^ e )
-		{
+		System::Void btnClear_Click(System::Object^ sender, System::EventArgs^ e) {
 			ClearCells();
 			UpdateCellWindow();
 		}
 
-		System::Void trkPixelSize_Scroll( System::Object^ sender, System::EventArgs^ e )
-		{
+		System::Void trkPixelSize_Scroll(System::Object^ sender, System::EventArgs^ e) {
 			cbxGrid->Enabled = (trkPixelSize->Value > 4);
 			CheckCellWindowBounds();
 			UpdateCellWindow();
 		}
 
-		System::Void cbxGrid_CheckedChanged( System::Object^ sender, System::EventArgs^ e )
-		{
+		System::Void cbxGrid_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
 			UpdateCellWindow();
 		}
 
-		System::Void pbxFGColour_Click( System::Object^ sender, System::EventArgs^ e )
-		{
+		System::Void pbxFGColour_Click(System::Object^ sender, System::EventArgs^ e) {
 			int iR = pbxFGColour->BackColor.R;
 			int iG = pbxFGColour->BackColor.G;
 			int iB = pbxFGColour->BackColor.B;
-			ColourSpaceForm^ colourForm = gcnew ColourSpaceForm( iR, iG, iB );
-			if (colourForm->ShowDialog() != ::DialogResult::Cancel)
-			{
+			ColourSpaceForm^ colourForm = gcnew ColourSpaceForm(iR, iG, iB);
+			if (colourForm->ShowDialog() != ::DialogResult::Cancel) {
 				pbxFGColour->BackColor = colourForm->GetColour();
 			}
 			delete colourForm;
 		}
 
-		System::Void pbxBGColour_Click( System::Object^ sender, System::EventArgs^ e )
-		{
+		System::Void pbxBGColour_Click(System::Object^ sender, System::EventArgs^ e) {
 			int iR = pbxBGColour->BackColor.R;
 			int iG = pbxBGColour->BackColor.G;
 			int iB = pbxBGColour->BackColor.B;
-			ColourSpaceForm^ colourForm = gcnew ColourSpaceForm( iR, iG, iB );
-			if (colourForm->ShowDialog() != ::DialogResult::Cancel)
-			{
+			ColourSpaceForm^ colourForm = gcnew ColourSpaceForm(iR, iG, iB);
+			if (colourForm->ShowDialog() != ::DialogResult::Cancel) {
 				pbxBGColour->BackColor = colourForm->GetColour();
 			}
 			delete colourForm;
 		}
 
-		System::Void tbxSides_TextChanged( System::Object^ sender, System::EventArgs^ e )
-		{
-			try
-			{
-				m_iSides = Convert::ToInt32( tbxSides->Text );
-			}
-			catch (Exception^) 
-			{
-				tbxSides->Text = "3";
-				return;
-			}
+		System::Void tbxSides_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+			m_iSides = Convert::ToInt32(tbxSides->Value);
 
-			if (m_iSides < 3)
-			{
-				tbxSides->Text = "3";
-			}
-
-			tbbStar->Enabled = ((m_iSides & 1) && m_iSides > 3);
-			if (!tbbStar->Enabled && tbbStar->Pushed)
-			{
+			tbbStar->Enabled = (m_iSides & 1) && (m_iSides >= 5);
+			if (!tbbStar->Enabled && tbbStar->Pushed) {
 				tbbPolygon->Pushed = true;
 				tbbStar->Pushed = false;
 			}
 		}
 
 
-	///////////////////////////////////////////
-	// Application specific functions
+		///////////////////////////////////////////
+		// Application specific functions
 	private:
 
 		///////////////////////////////////////////
 		// Encapsulate some form controls
 
 		// Width of the cell window in pixels
-		int CellWindowWidth()
-		{
+		int CellWindowWidth() {
 			return pbxCellWindow->ClientSize.Width;
 		}
 
 
 		// Height of the cell window in pixels
-		int CellWindowHeight()
-		{
+		int CellWindowHeight() {
 			return pbxCellWindow->ClientSize.Height;
 		}
 
 
 		// Current width of a cell in pixels
-		int CellWidth()
-		{
+		int CellWidth() {
 			return trkPixelSize->Value;
 		}
 
 
 		// Current height of a cell in pixels
-		int CellHeight()
-		{
+		int CellHeight() {
 			return trkPixelSize->Value;
 		}
 
 
 		// Get grid use (if grid is disabled then it is not used
-		bool UseGrid()
-		{
+		bool UseGrid() {
 			return (cbxGrid->Checked && cbxGrid->Enabled);
 		}
 
 
 		// Access drawing colours
-		Color FGColour()
-		{
+		Color FGColour() {
 			return pbxFGColour->BackColor;
 		}
 
-		Color BGColour()
-		{
+		Color BGColour() {
 			return pbxBGColour->BackColor;
 		}
 
-		Color GridColour()
-		{
+		Color GridColour() {
 			return Color::Gray;
 		}
 
@@ -815,24 +751,20 @@ namespace PixelPlotter {
 		///////////////////////////////////////////
 		// Cell window offset management
 
-		int FirstCellX()
-		{
+		int FirstCellX() {
 			return static_cast<int>(m_fCellWindowOffsetX);
 		}
 
-		int FirstCellY()
-		{
+		int FirstCellY() {
 			return static_cast<int>(m_fCellWindowOffsetY);
 		}
 
-		int FirstCellOffsetX()
-		{
-			return static_cast<int>(CellWidth() * (Math::Floor( m_fCellWindowOffsetX ) - m_fCellWindowOffsetX));
+		int FirstCellOffsetX() {
+			return static_cast<int>(CellWidth() * (Math::Floor(m_fCellWindowOffsetX) - m_fCellWindowOffsetX));
 		}
 
-		int FirstCellOffsetY()
-		{
-			return static_cast<int>(CellHeight() * (Math::Floor( m_fCellWindowOffsetY ) - m_fCellWindowOffsetY));
+		int FirstCellOffsetY() {
+			return static_cast<int>(CellHeight() * (Math::Floor(m_fCellWindowOffsetY) - m_fCellWindowOffsetY));
 		}
 
 
@@ -840,23 +772,19 @@ namespace PixelPlotter {
 		// Coordinate conversions
 
 		// Convert between window (pixel) coordinates and cell coordinates
-		int CellXFromWindowX( int iWindowX )
-		{
+		int CellXFromWindowX(int iWindowX) {
 			return FirstCellX() + (iWindowX - FirstCellOffsetX()) / CellWidth();
 		}
 
-		int CellYFromWindowY( int iWindowY )
-		{
+		int CellYFromWindowY(int iWindowY) {
 			return FirstCellY() + (iWindowY - FirstCellOffsetY()) / CellHeight();
 		}
 
-		int WindowXFromCellX( int iCellX )
-		{
+		int WindowXFromCellX(int iCellX) {
 			return FirstCellOffsetX() + (iCellX - FirstCellX()) * CellWidth();
 		}
 
-		int WindowYFromCellY( int iCellY )
-		{
+		int WindowYFromCellY(int iCellY) {
 			return FirstCellOffsetY() + (iCellY - FirstCellY()) * CellHeight();
 		}
 
@@ -867,60 +795,52 @@ namespace PixelPlotter {
 		// Draw guide lines during the mouse move event for certain tools. Draw directly to window
 		// client area, using an invalidate/update sequence to remove the previous guide lines
 		// using the stored bitmap (which is unaffected by the guide lines)
-		void DrawGuideLines( int iCurrentX, int iCurrentY )
-		{
-			int iStartX = WindowXFromCellX( m_iCellDownX ) + CellWidth() / 2;
-			int iStartY = WindowYFromCellY( m_iCellDownY ) + CellHeight() / 2;
+		void DrawGuideLines(int iCurrentX, int iCurrentY) {
+			int iStartX = WindowXFromCellX(m_iCellDownX) + CellWidth() / 2;
+			int iStartY = WindowYFromCellY(m_iCellDownY) + CellHeight() / 2;
 			pbxCellWindow->Invalidate();
 			pbxCellWindow->Update();
-			Pen^ penTemp = gcnew Pen( GridColour() );
+			Pen^ penTemp = gcnew Pen(GridColour());
 			penTemp->DashStyle = Drawing2D::DashStyle::Dash;
-			if (tbbLine->Pushed)
-			{
-				m_gfxCellWindowTransient->DrawLine( penTemp, iStartX, iStartY, iCurrentX, iCurrentY );
+			if (tbbLine->Pushed) {
+				m_gfxCellWindowTransient->DrawLine(penTemp, iStartX, iStartY, iCurrentX, iCurrentY);
 			}
 			else
-			if (tbbRectangle->Pushed)
-			{
-				int iLeftX = Math::Min( iStartX, iCurrentX );
-				int iRightX = Math::Max( iStartX, iCurrentX );
-				int iTopY = Math::Min( iStartY, iCurrentY );
-				int iBottomY = Math::Max( iStartY, iCurrentY );
-				m_gfxCellWindowTransient->DrawRectangle( penTemp, iLeftX, iTopY, iRightX - iLeftX + 1, iBottomY - iTopY + 1 );
-			}
-			else if (tbbPolygon->Pushed || tbbStar->Pushed)
-			{
-				int iMoveX = iCurrentX - iStartX;
-				int iMoveY = iCurrentY - iStartY;
-				double radius = Math::Sqrt( iMoveX * iMoveX + iMoveY * iMoveY );
-				int iSides = m_iSides;
-				array<Point>^ polyPoints = gcnew array<Point>(iSides);
-				double polyAngle = Math::PI * 2.0 / iSides;
-				if (tbbStar->Pushed)
-				{
-					polyAngle *= 2.0;
+				if (tbbRectangle->Pushed) {
+					int iLeftX = Math::Min(iStartX, iCurrentX);
+					int iRightX = Math::Max(iStartX, iCurrentX);
+					int iTopY = Math::Min(iStartY, iCurrentY);
+					int iBottomY = Math::Max(iStartY, iCurrentY);
+					m_gfxCellWindowTransient->DrawRectangle(penTemp, iLeftX, iTopY, iRightX - iLeftX + 1, iBottomY - iTopY + 1);
 				}
+				else if (tbbPolygon->Pushed || tbbStar->Pushed) {
+					int iMoveX = iCurrentX - iStartX;
+					int iMoveY = iCurrentY - iStartY;
+					double radius = Math::Sqrt(iMoveX * iMoveX + iMoveY * iMoveY);
+					int iSides = m_iSides;
+					array<Point>^ polyPoints = gcnew array<Point>(iSides);
+					double polyAngle = Math::PI * 2.0 / iSides;
+					if (tbbStar->Pushed) {
+						polyAngle *= 2.0;
+					}
 
-				for (int iPoint = 0; iPoint < iSides; ++iPoint)
-				{
-					polyPoints[ iPoint ].X = iStartX + static_cast<int>(radius * Math::Sin( polyAngle * iPoint ) + 0.5);
-					polyPoints[ iPoint ].Y = iStartY - static_cast<int>(radius * Math::Cos( polyAngle * iPoint ) + 0.5);
+					for (int iPoint = 0; iPoint < iSides; ++iPoint) {
+						polyPoints[iPoint].X = iStartX + static_cast<int>(radius * Math::Sin(polyAngle * iPoint) + 0.5);
+						polyPoints[iPoint].Y = iStartY - static_cast<int>(radius * Math::Cos(polyAngle * iPoint) + 0.5);
+					}
+					m_gfxCellWindowTransient->DrawPolygon(penTemp, polyPoints);
 				}
-				m_gfxCellWindowTransient->DrawPolygon( penTemp, polyPoints );
-			}
-			else if (tbbCircle->Pushed)
-			{
-				int iMoveX = iCurrentX - iStartX;
-				int iMoveY = iCurrentY - iStartY;
-				int iRadius = static_cast<int>(Math::Sqrt( iMoveX * iMoveX + iMoveY * iMoveY ));
-				m_gfxCellWindowTransient->DrawEllipse( penTemp, iStartX - iRadius, iStartY - iRadius, iRadius * 2, iRadius * 2 );
-			}
+				else if (tbbCircle->Pushed) {
+					int iMoveX = iCurrentX - iStartX;
+					int iMoveY = iCurrentY - iStartY;
+					int iRadius = static_cast<int>(Math::Sqrt(iMoveX * iMoveX + iMoveY * iMoveY));
+					m_gfxCellWindowTransient->DrawEllipse(penTemp, iStartX - iRadius, iStartY - iRadius, iRadius * 2, iRadius * 2);
+				}
 		}
 
 
 		// Remove guide lines upon mouse up event (see DrawGuideLines above)
-		void RemoveGuideLines()
-		{
+		void RemoveGuideLines() {
 			pbxCellWindow->Invalidate();
 			pbxCellWindow->Update();
 		}
@@ -930,39 +850,31 @@ namespace PixelPlotter {
 		// Cell window drawing functions
 
 		// Keep cell window within cell array
-		void CheckCellWindowBounds()
-		{
-			if (m_fCellWindowOffsetX < 0.0f)
-			{
+		void CheckCellWindowBounds() {
+			if (m_fCellWindowOffsetX < 0.0f) {
 				m_fCellWindowOffsetX = 0.0f;
 			}
 
-			if (m_fCellWindowOffsetY < 0.0f)
-			{
+			if (m_fCellWindowOffsetY < 0.0f) {
 				m_fCellWindowOffsetY = 0.0f;
 			}
 
 			float fCellsWidth = static_cast<float>(CellWindowWidth()) / CellWidth();
-			if (m_fCellWindowOffsetX > m_kiCellArrayWidth - fCellsWidth)
-			{
+			if (m_fCellWindowOffsetX > m_kiCellArrayWidth - fCellsWidth) {
 				m_fCellWindowOffsetX = m_kiCellArrayWidth - fCellsWidth;
 			}
 
 			float fCellsHeight = static_cast<float>(CellWindowHeight()) / CellHeight();
-			if (m_fCellWindowOffsetY > m_kiCellArrayHeight - fCellsHeight)
-			{
+			if (m_fCellWindowOffsetY > m_kiCellArrayHeight - fCellsHeight) {
 				m_fCellWindowOffsetY = m_kiCellArrayHeight - fCellsHeight;
 			}
 		}
 
 
 		// Clear all the cells to their default value
-		void ClearCells()
-		{
-			for (int iY = 0; iY < m_kiCellArrayHeight; ++iY)
-			{
-				for (int iX = 0; iX < m_kiCellArrayWidth; ++iX)
-				{
+		void ClearCells() {
+			for (int iY = 0; iY < m_kiCellArrayHeight; ++iY) {
+				for (int iX = 0; iX < m_kiCellArrayWidth; ++iX) {
 					m_aCells[iY, iX] = BGColour();
 				}
 			}
@@ -970,20 +882,16 @@ namespace PixelPlotter {
 
 
 		// Redraw the entire cell window
-		void UpdateCellWindow()
-		{
-			m_gfxCellWindow->Clear( BGColour() );
+		void UpdateCellWindow() {
+			m_gfxCellWindow->Clear(BGColour());
 			DrawAllPixels();
-			if (UseGrid())
-			{
-				Pen^ penGrid = gcnew Pen( GridColour() );
-				for (int iX = FirstCellOffsetX(); iX < CellWindowWidth(); iX += CellWidth())
-				{
-					m_gfxCellWindow->DrawLine( penGrid, iX, 0, iX, CellWindowHeight() - 1 );
+			if (UseGrid()) {
+				Pen^ penGrid = gcnew Pen(GridColour());
+				for (int iX = FirstCellOffsetX(); iX < CellWindowWidth(); iX += CellWidth()) {
+					m_gfxCellWindow->DrawLine(penGrid, iX, 0, iX, CellWindowHeight() - 1);
 				}
-				for (int iY = FirstCellOffsetY(); iY < CellWindowHeight(); iY += CellHeight())
-				{
-					m_gfxCellWindow->DrawLine( penGrid, 0, iY, CellWindowWidth() - 1, iY );
+				for (int iY = FirstCellOffsetY(); iY < CellWindowHeight(); iY += CellHeight()) {
+					m_gfxCellWindow->DrawLine(penGrid, 0, iY, CellWindowWidth() - 1, iY);
 				}
 			}
 
@@ -992,11 +900,10 @@ namespace PixelPlotter {
 
 
 		// Redraw all the pixels visible in the cell window. Designed for efficiency.
-		void DrawAllPixels()
-		{
-			BitmapData^ bmdCellWindow = 
-				m_bmpCellWindow->LockBits( Rectangle(Point(0, 0), m_bmpCellWindow->Size),
-				                           ImageLockMode::WriteOnly, PixelFormat::Format32bppArgb );
+		void DrawAllPixels() {
+			BitmapData^ bmdCellWindow =
+				m_bmpCellWindow->LockBits(Rectangle(Point(0, 0), m_bmpCellWindow->Size),
+					ImageLockMode::WriteOnly, PixelFormat::Format32bppArgb);
 			int* pPixels = static_cast<int*>(bmdCellWindow->Scan0.ToPointer());
 			int iStride = (bmdCellWindow->Stride / 4) - bmdCellWindow->Width;
 			int iCellHeight = CellHeight();
@@ -1007,19 +914,16 @@ namespace PixelPlotter {
 			int iInitCellYPos = FirstCellOffsetY() + CellHeight();
 			int iCellYPos = iInitCellYPos;
 			int iPixY = 0;
-			while (iPixY < bmdCellWindow->Height)
-			{
+			while (iPixY < bmdCellWindow->Height) {
 				interior_ptr<Color> CurrentCell = &m_aCells[iY, iX];
 				int pixelColour = CurrentCell->ToArgb();
 				int iCellXPos = iInitCellXPos;
 				int iPixX = 0;
-				while (iPixX < bmdCellWindow->Width)
-				{
+				while (iPixX < bmdCellWindow->Width) {
 					*pPixels = pixelColour;
 					++pPixels;
 					--iCellXPos;
-					if (!iCellXPos)
-					{
+					if (!iCellXPos) {
 						iCellXPos = iCellWidth;
 						++CurrentCell;
 						pixelColour = CurrentCell->ToArgb();
@@ -1030,8 +934,7 @@ namespace PixelPlotter {
 
 				pPixels += iStride;
 				--iCellYPos;
-				if (!iCellYPos)
-				{
+				if (!iCellYPos) {
 					iCellYPos = iCellHeight;
 					++iY;
 				}
@@ -1039,33 +942,29 @@ namespace PixelPlotter {
 				iPixY++;
 			}
 
-			m_bmpCellWindow->UnlockBits( bmdCellWindow );
+			m_bmpCellWindow->UnlockBits(bmdCellWindow);
 		}
 
 
 		// Draw the given pixel in the appropriate place in the cell window
-		void SetViewportPixel( int iX, int iY, Color colour )
-		{
-			if (iX < 0 || iY < 0 || iX >= m_kiCellArrayWidth || iY >= m_kiCellArrayHeight)
-			{
+		void SetViewportPixel(int iX, int iY, Color colour) {
+			if (iX < 0 || iY < 0 || iX >= m_kiCellArrayWidth || iY >= m_kiCellArrayHeight) {
 				return;
 			}
 
 			m_aCells[iY, iX] = colour;
-			Brush^ brsPixel = gcnew SolidBrush( colour );
+			Brush^ brsPixel = gcnew SolidBrush(colour);
 			Rectangle rctPixel;
-			if (UseGrid())
-			{
-				rctPixel = Rectangle(WindowXFromCellX( iX ) + 1, WindowYFromCellY( iY ) + 1, CellWidth() - 1, CellHeight() - 1);
+			if (UseGrid()) {
+				rctPixel = Rectangle(WindowXFromCellX(iX) + 1, WindowYFromCellY(iY) + 1, CellWidth() - 1, CellHeight() - 1);
 			}
-			else
-			{
-				rctPixel = Rectangle(WindowXFromCellX( iX ), WindowYFromCellY( iY ), CellWidth(), CellHeight());
+			else {
+				rctPixel = Rectangle(WindowXFromCellX(iX), WindowYFromCellY(iY), CellWidth(), CellHeight());
 			}
 
-			m_gfxCellWindow->FillRectangle( brsPixel, rctPixel );
+			m_gfxCellWindow->FillRectangle(brsPixel, rctPixel);
 			delete brsPixel;
-			pbxCellWindow->Invalidate( rctPixel );
+			pbxCellWindow->Invalidate(rctPixel);
 		}
 
 
@@ -1074,21 +973,21 @@ namespace PixelPlotter {
 
 		// These functions are contained in PixelDrawing.cpp
 		// Draw a rectangle with top-left at (X, Y) with given width, height and colour
-		void DrawRectangle( int X, int Y, int Width, int Height, Color PixelColour );
+		void DrawRectangle(int X, int Y, int Width, int Height, Color PixelColour);
 
 		// Draw a line from (X1, Y1) to (X2, Y2) in given colour
-		void DrawLine( int X1, int Y1, int X2, int Y2, Color PixelColour );
+		void DrawLine(int X1, int Y1, int X2, int Y2, Color PixelColour);
 
 		// Draw a regular polygon with the given number of sides. The centre of the polygon will be at
 		// (X, Y) and the points are on a circle of radius R
-		void DrawPolygon( int Sides, int X, int Y, int R, Color PixelColour );
+		void DrawPolygon(int Sides, int X, int Y, int R, Color PixelColour);
 
 		// Draw a regular star with the given number of points. The centre of the star will be at (X, Y)
 		// and it the points are on a circle of radius R. The number of points will always be odd.
-		void DrawStar( int Sides, int X, int Y, int R, Color PixelColour );
+		void DrawStar(int Sides, int X, int Y, int R, Color PixelColour);
 
 		// Draw a circle with centre (X, Y) and radiuses RX (horizontal) and RY (vertical)
-		void DrawCircle( int X, int Y, int R, Color PixelColour );
+		void DrawCircle(int X, int Y, int R, Color PixelColour);
 
 
 		//////////////////////////////////
