@@ -11,7 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectName>PixelPlotter</ProjectName>
+    <ProjectName>2-PixelPlotter</ProjectName>
     <ProjectGuid>{D648DD37-09B7-4D3E-BC70-DD76BFB6A2C9}</ProjectGuid>
     <RootNamespace>PixelPlotter</RootNamespace>
     <Keyword>ManagedCProj</Keyword>

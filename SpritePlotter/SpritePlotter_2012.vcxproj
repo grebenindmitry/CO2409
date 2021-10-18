@@ -11,7 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectName>SpritePlotter</ProjectName>
+    <ProjectName>3-SpritePlotter</ProjectName>
     <ProjectGuid>{6BD1E077-6690-4D08-BF9F-A6EF216A588F}</ProjectGuid>
     <RootNamespace>SpritePlotter</RootNamespace>
     <Keyword>ManagedCProj</Keyword>
